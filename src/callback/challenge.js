@@ -1,12 +1,12 @@
 // Package created from Microsoft.
 let { XMLHttpRequest } = require("xmlhttprequest");
 
-const API = 'https://rickandmortyapi.com/api/character/';
+const API = "https://rickandmortyapi.com/api/character/";
 
 /**
  * Function fo fetch any data with method GET.
- * @param {*} url 
- * @param {*} callback 
+ * @param {*} url
+ * @param {*} callback
  */
 function fetchData(url, callback) {
   // New instance
@@ -27,15 +27,15 @@ function fetchData(url, callback) {
   xhttp.send();
 }
 
-fetchData(API, function(err1, data1) {
-  if(err1) return console.error(err1);
-  fetchData(API+data1.results[0].id, function(err2, data2){
-    if(err2) return console.error(err2);
-      fetchData(data2.origin.url, function(err3, data3) {
-        if(err3) return console.error(err3);
-        console.log(data1.info.count);
-        console.log(data2.name);
-        console.log(data3.dimension);
-      });
-  })
-})
+fetchData(API, function (err1, data1) {
+  if (err1) return console.error(err1);
+  fetchData(API + data1.results[0].id, function (err2, data2) {
+    if (err2) return console.error(err2);
+    fetchData(data2.origin.url, function (err3, data3) {
+      if (err3) return console.error(err3);
+      console.log(data1.info.count);
+      console.log(data2.name);
+      console.log(data3.dimension);
+    });
+  });
+});
